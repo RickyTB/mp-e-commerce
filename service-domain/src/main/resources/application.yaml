@@ -5,5 +5,5 @@ javax:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
         dataSource:
           url: jdbc:postgresql://localhost:5432/postgres
-          username: postgres
+          user: postgres
           password: 123456

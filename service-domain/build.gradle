@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.freefair.lombok" version "6.0.0-m2"
+    id "io.freefair.lombok" 
 }
 
 group = 'com.programacion'
@@ -15,33 +15,34 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-ext {
-    helidonversion = '2.3.3'
-}
-
 repositories {
     mavenCentral()
     mavenLocal()
     gradlePluginPortal()
 }
 
+ext {
+    helidonversion = '2.0.1'
+}
+
 dependencies {
-    // import Helidon BOM
     implementation enforcedPlatform("io.helidon:helidon-dependencies:${project.helidonversion}")
     implementation 'io.helidon.microprofile.bundles:helidon-microprofile'
 
     runtimeOnly 'jakarta.activation:jakarta.activation-api'
 
     // JPA
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-hibernate', version: '2.3.3'
-    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.0.0'
+    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp'
+    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld'
+    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa'
+    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-hibernate'
+    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.2'
     implementation 'javax.transaction:javax.transaction-api:1.2'
 
     // Base de datos
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.22'
+
+    runtimeOnly 'org.jboss:jandex:2.1.1.Final'
 }
 
 // define a custom task to copy all dependencies in the runtime classpath

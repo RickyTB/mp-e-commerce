@@ -3,3 +3,6 @@
  */
 
 rootProject.name = 'jpa-helidon-sample'
+
+include ':ecommerce-domain'
+project(':ecommerce-domain').projectDir = new File('../service-domain')

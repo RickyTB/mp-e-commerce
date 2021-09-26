@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class UserEntity extends BaseEntity {
+
   @Column(name = "login", nullable = false)
   private String login;
 
