@@ -25,6 +25,7 @@ dependencies {
 
     runtimeOnly 'jakarta.activation:jakarta.activation-api'
     runtimeOnly 'org.jboss:jandex:2.1.1.Final'
+    implementation 'io.vertx:vertx-auth-jwt:3.9.5'
 
     implementation project(":ecommerce-domain")
 }

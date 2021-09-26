@@ -2,13 +2,16 @@ package com.programacion.ecommerce.controllers;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.programacion.ecommerce.services.UserService;
+import com.programacion.ecommerce.dto.SignupCredentialsDto;
+import com.programacion.ecommerce.entities.UserEntity;
+import com.programacion.ecommerce.services.AuthService;
 
 @ApplicationScoped
 @Path("/")
@@ -17,12 +20,13 @@ import com.programacion.ecommerce.services.UserService;
 public class AuthController {
 
   @Inject
-  private UserService userService;
+  private AuthService authService;
 
   @POST
   @Path("/signup")
-  public String signup() {
-    System.out.println(userService.findAll());
+  public String signup(SignupCredentialsDto credentials) {
+    UserEntity user = authService.signup(credentials);
+    System.out.println(user.getLogin());
     return "";
   }
 

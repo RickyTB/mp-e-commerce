@@ -2,7 +2,12 @@ package com.programacion.ecommerce.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.programacion.ecommerce.enums.UserStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +22,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "user", schema = "public")
 public class UserEntity extends BaseEntity {
 
-  @Column(name = "login", nullable = false)
+  @NotNull
+  @Column(name = "login")
   private String login;
 
-  @Column(name = "password", nullable = false)
+  @NotNull
+  @Column(name = "password")
   private String password;
 
-  @Column(name = "status", nullable = false)
-  private Integer status;
+  @NotNull
+  @Column(name = "status")
+  @Enumerated(EnumType.STRING)
+  private UserStatus status;
 }

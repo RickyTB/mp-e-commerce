@@ -5,11 +5,11 @@ import java.util.List;
 import com.programacion.ecommerce.entities.UserEntity;
 
 public interface UserService {
-  void create(UserEntity proceso);
+  void create(UserEntity user);
 
-  void edit(UserEntity proceso);
+  void edit(UserEntity user);
 
-  void remove(UserEntity proceso);
+  void remove(UserEntity user);
 
   UserEntity find(Object id);
 

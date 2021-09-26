@@ -1,26 +1,30 @@
-package com.programacion.ecommerce.services;
+package com.programacion.ecommerce.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
-public abstract class BaseService<T> {
+public abstract class BaseRepository<T> {
   private Class<T> entityClass;
 
-  public BaseService(Class<T> entityClass) {
+  public BaseRepository(Class<T> entityClass) {
     this.entityClass = entityClass;
   }
 
   protected abstract EntityManager getEntityManager();
 
+  @Transactional
   public void create(T entity) {
     getEntityManager().persist(entity);
   }
 
+  @Transactional
   public void edit(T entity) {
     getEntityManager().merge(entity);
   }
 
+  @Transactional
   public void remove(T entity) {
     getEntityManager().remove(getEntityManager().merge(entity));
   }

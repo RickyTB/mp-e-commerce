@@ -1,10 +1,12 @@
-package com.programacion.ecommerce.services;
+package com.programacion.ecommerce.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.programacion.ecommerce.entities.UserEntity;
 
-public interface UserService {
+public interface UserRepository {
   void create(UserEntity proceso);
 
   void edit(UserEntity proceso);
