@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "io.freefair.lombok" version "6.0.0-m2"
+    id 'application'
 }
 
 group = 'com.programacion'
@@ -16,7 +17,7 @@ tasks.withType(JavaCompile) {
 }
 
 ext {
-    helidonversion = '2.3.3'
+    helidonversion = '2.2.0'
 }
 
 repositories {
@@ -27,21 +28,18 @@ repositories {
 
 dependencies {
     // import Helidon BOM
-    implementation enforcedPlatform("io.helidon:helidon-dependencies:${project.helidonversion}")
-    implementation 'io.helidon.microprofile.bundles:helidon-microprofile'
+    implementation 'io.vertx:vertx-auth-jwt:3.9.5'
 
-    runtimeOnly 'jakarta.activation:jakarta.activation-api'
-
-    // JPA
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa', version: '2.3.3'
-    implementation group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-hibernate', version: '2.3.3'
-    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.0.0'
+    implementation 'io.helidon.microprofile.bundles:helidon-microprofile:2.0.1'
+    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jpa:2.0.1'
+    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jta-weld:2.0.1'
+    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-datasource-hikaricp:2.0.1'
+    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-hibernate:2.0.0'
+    implementation 'org.postgresql:postgresql:42.2.7'
+    implementation 'jakarta.persistence:jakarta.persistence-api:2.2.2'
     implementation 'javax.transaction:javax.transaction-api:1.2'
-
-    // Base de datos
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.22'
+    runtimeOnly 'org.jboss:jandex:2.1.1.Final'
+    runtimeOnly 'jakarta.activation:jakarta.activation-api:1.2.2'
 }
 
 // define a custom task to copy all dependencies in the runtime classpath
@@ -68,4 +66,13 @@ jar {
   }
 }
 
+application {
+    // Define the main class for the application.
+    mainClass = 'io.helidon.microprofile.server.Main'
+}
 
+sourceSets {
+  	main {
+  	    output.resourcesDir=file("${buildDir}/classes/java/main")
+    }
+}

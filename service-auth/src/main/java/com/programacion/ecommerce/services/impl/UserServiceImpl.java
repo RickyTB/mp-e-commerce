@@ -10,7 +10,7 @@ import com.programacion.ecommerce.services.UserService;
 
 @ApplicationScoped
 public class UserServiceImpl extends BaseService<UserEntity> implements UserService {
-  @PersistenceContext(unitName = "ecommercePU")
+  @PersistenceContext
   private EntityManager em;
 
   @Override
