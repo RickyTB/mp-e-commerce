@@ -3,6 +3,7 @@ package com.programacion.ecommerce.dao.impl;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.programacion.ecommerce.dao.BaseRepository;
 import com.programacion.ecommerce.dao.UserRepository;
@@ -20,6 +21,13 @@ public class UserRepositoryImpl extends BaseRepository<UserEntity> implements Us
 
   public UserRepositoryImpl() {
     super(UserEntity.class);
+  }
+
+  @Override
+  public UserEntity findByLogin(String login) {
+    TypedQuery<UserEntity> sql = em.createNamedQuery("UserEntity.findByLogin", UserEntity.class).setParameter("login",
+        login);
+    return sql.getSingleResult();
   }
 
 }

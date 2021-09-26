@@ -2,13 +2,13 @@ package com.programacion.ecommerce.controllers;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.programacion.ecommerce.dto.LoginCredentialsDto;
 import com.programacion.ecommerce.dto.SignupCredentialsDto;
 import com.programacion.ecommerce.entities.UserEntity;
 import com.programacion.ecommerce.services.AuthService;
@@ -32,7 +32,9 @@ public class AuthController {
 
   @POST
   @Path("/login")
-  public String login() {
+  public String login(LoginCredentialsDto credentials) {
+    UserEntity user = authService.login(credentials);
+    System.out.println(user.getLogin());
     return "";
   }
 

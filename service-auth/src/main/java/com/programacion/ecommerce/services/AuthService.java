@@ -1,11 +1,12 @@
 package com.programacion.ecommerce.services;
 
+import com.programacion.ecommerce.dto.LoginCredentialsDto;
 import com.programacion.ecommerce.dto.SignupCredentialsDto;
 import com.programacion.ecommerce.entities.UserEntity;
 
 public interface AuthService {
 
-  void login();
+  UserEntity login(LoginCredentialsDto credentials);
 
   UserEntity signup(SignupCredentialsDto credentials);
 
