@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-public class SignupCredentialsDto {
+public class ProductCredentialsDto {
   private String login;
   private String password;
 }
