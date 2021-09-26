@@ -1,0 +1,4 @@
+rootProject.name = 'ecommerce-auth'
+
+include ':ecommerce-domain'
+project(':ecommerce-domain').projectDir = new File('../service-domain')

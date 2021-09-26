@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ecommerce-b</name>
-	<comment>Project service-b created by Buildship.</comment>
+	<name>ecommerce-auth</name>
+	<comment>Project service-auth created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>

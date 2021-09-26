@@ -1,4 +1,4 @@
-package com.programacion.ecommerce;
+package com.programacion.ecommerce.controllers;
 
 import javax.inject.Singleton;
 import javax.ws.rs.GET;

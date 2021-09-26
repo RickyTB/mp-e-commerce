@@ -39,13 +39,3 @@ Configuration of your application parameters. Specification [here](https://micro
 
 The example class **ConfigTestController** shows you how to inject a configuration parameter and how you can retrieve it programmatically.
 
-### JWT Auth
-
-Using the OpenId Connect JWT token to pass authentication and authorization information to the JAX-RS endpoint. Specification [here](https://microprofile.io/project/eclipse/microprofile-rest-client)
-
-Have a look at the **TestSecureController** class which calls the protected endpoint on the secondary application.
-The **ProtectedController** (secondary application) contains the protected endpoint since it contains the _@RolesAllowed_ annotation on the JAX-RS endpoint method.
-
-The _TestSecureController_ code creates a JWT based on the private key found within the resource directory.
-However, any method to send a REST request with an appropriate header will work of course. Please feel free to change this code to your needs.
-

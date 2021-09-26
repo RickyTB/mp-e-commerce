@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group = 'com.programacion'
+version = '1.0-SNAPSHOT'
+
+description = "MicroProfile Starter example"
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+ext {
+    helidonversion = '2.3.3'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    gradlePluginPortal()
+}
+
+dependencies {
+    // import Helidon BOM
+    implementation enforcedPlatform("io.helidon:helidon-dependencies:${project.helidonversion}")
+    implementation 'io.helidon.microprofile.bundles:helidon-microprofile'
+
+    runtimeOnly 'jakarta.activation:jakarta.activation-api'
+    runtimeOnly 'com.fasterxml.woodstox:woodstox-core:5.2.0'
+
+    // JPA
+    runtimeOnly group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp'
+    runtimeOnly group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld'
+    runtimeOnly group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa'
+    runtimeOnly group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-eclipselink'
+    compileOnly group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.0.0'
+    compileOnly group: 'jakarta.transaction', name: 'jakarta.transaction-api', version: '2.0.0'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.7.Final'
+
+    // Base de datos
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.22'
+    implementation group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
+}
+
+// define a custom task to copy all dependencies in the runtime classpath
+// into build/libs/libs
+// uses built-in Copy
+task copyLibs(type: Copy) {
+  from configurations.runtimeClasspath
+  into 'build/libs/libs'
+}
+
+// add it as a dependency of built-in task 'assemble'
+copyLibs.dependsOn jar
+assemble.dependsOn copyLibs
+
+// default jar configuration
+// set the main classpath
+// add each jar under build/libs/libs into the classpath
+jar {
+  archiveFileName = "${project.name}.jar"
+  manifest {
+    attributes ('Main-Class': 'io.helidon.microprofile.cdi.Main',
+                'Class-Path': configurations.runtimeClasspath.files.collect { "libs/$it.name" }.join(' ')
+               )
+  }
+}
+
+
