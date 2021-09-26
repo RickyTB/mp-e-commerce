@@ -26,13 +26,14 @@ dependencies {
     runtimeOnly 'jakarta.activation:jakarta.activation-api'
     runtimeOnly 'org.jboss:jandex:2.1.1.Final'
     implementation 'io.vertx:vertx-auth-jwt:3.9.5'
+    implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 
     implementation project(":ecommerce-domain")
 }
 
-group = 'com.hkg.helidon'
+group = 'com.programacion.ecommerce'
 version = '1.0-SNAPSHOT'
-description = 'myproject'
+description = 'Proyecto grupal Programación Distribuida'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11

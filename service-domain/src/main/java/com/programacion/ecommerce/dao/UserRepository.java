@@ -2,16 +2,14 @@ package com.programacion.ecommerce.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import com.programacion.ecommerce.entities.UserEntity;
 
 public interface UserRepository {
-  void create(UserEntity proceso);
+  void create(UserEntity user);
 
-  void edit(UserEntity proceso);
+  void edit(UserEntity user);
 
-  void remove(UserEntity proceso);
+  void remove(UserEntity user);
 
   UserEntity find(Object id);
 
@@ -20,4 +18,6 @@ public interface UserRepository {
   List<UserEntity> findRange(int[] range);
 
   int count();
+
+  UserEntity findByLogin(String login);
 }

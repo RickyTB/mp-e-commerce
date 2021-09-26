@@ -8,4 +8,7 @@ import lombok.Setter;
 public class SignupCredentialsDto {
   private String login;
   private String password;
+  private String address;
+  private String phone;
+  private String email;
 }

@@ -3,8 +3,10 @@ plugins {
     id "io.freefair.lombok" 
 }
 
-group = 'com.programacion'
+
+group = 'com.programacion.ecommerce'
 version = '1.0-SNAPSHOT'
+description = 'Proyecto grupal Programación Distribuida'
 
 description = "MicroProfile Starter example"
 

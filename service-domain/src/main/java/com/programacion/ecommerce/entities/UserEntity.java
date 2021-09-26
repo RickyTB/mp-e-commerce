@@ -4,12 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import com.programacion.ecommerce.enums.UserStatus;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,9 +20,10 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "user", schema = "public")
+@NamedQueries({
+    @NamedQuery(name = "UserEntity.findByLogin", query = "SELECT u FROM UserEntity u WHERE u.login = :login"), })
 public class UserEntity extends BaseEntity {
 
   @NotNull
@@ -34,4 +38,13 @@ public class UserEntity extends BaseEntity {
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private UserStatus status;
+
+  @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+  private CustomerEntity customer;
+
+  public UserEntity(String login, String password, UserStatus status) {
+    this.login = login;
+    this.password = password;
+    this.status = status;
+  }
 }
