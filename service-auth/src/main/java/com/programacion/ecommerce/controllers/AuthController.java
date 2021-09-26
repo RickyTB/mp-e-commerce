@@ -26,16 +26,14 @@ public class AuthController {
   @Path("/signup")
   public String signup(SignupCredentialsDto credentials) {
     UserEntity user = authService.signup(credentials);
-    System.out.println(user.getLogin());
-    return "";
+    return authService.generateJWT(user);
   }
 
   @POST
   @Path("/login")
   public String login(LoginCredentialsDto credentials) {
     UserEntity user = authService.login(credentials);
-    System.out.println(user.getLogin());
-    return "";
+    return authService.generateJWT(user);
   }
 
 }

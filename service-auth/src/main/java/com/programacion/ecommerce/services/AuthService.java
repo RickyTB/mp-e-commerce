@@ -10,6 +10,6 @@ public interface AuthService {
 
   UserEntity signup(SignupCredentialsDto credentials);
 
-  String generateJWT();
+  String generateJWT(UserEntity user);
 
 }

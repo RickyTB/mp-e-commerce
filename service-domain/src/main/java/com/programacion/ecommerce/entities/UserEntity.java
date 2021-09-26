@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,7 +39,7 @@ public class UserEntity extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private UserStatus status;
 
-  @OneToOne(mappedBy = "user")
+  @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
   private CustomerEntity customer;
 
   public UserEntity(String login, String password, UserStatus status) {
