@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 
 import com.programacion.ecommerce.enums.ProductStatus;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +17,7 @@ import java.util.Set;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "product", schema = "public")
-public class ProductEntity extends BaseEntity {
+public class ProductEntity extends BaseEntity implements Serializable {
 
     @NotNull
     @Column(name = "name", nullable = false)
@@ -40,11 +40,11 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "sales_counter", nullable = false)
     private Integer salesCounter;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinTable(name = "product_review", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "review_id"))
-    private Set<ReviewEntity> reviews = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne()
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity category;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<ReviewEntity> reviews;
+
 }
