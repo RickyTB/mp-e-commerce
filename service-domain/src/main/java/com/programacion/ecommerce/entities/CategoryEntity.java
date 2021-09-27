@@ -22,9 +22,4 @@ public class CategoryEntity extends BaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    /*
-     * @OneToMany(mappedBy = "category", fetch = FetchType.LAZY) private
-     * List<ProductEntity> products;
-     */
-
 }

@@ -9,7 +9,6 @@ import com.programacion.ecommerce.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,12 +27,12 @@ public class OrderEntity extends BaseEntity {
     @Column(name = "status", nullable = false)
     private OrderStatus status;
     @NotNull
-    @Column(name = "shipped_date")
-    private ZonedDateTime shippedDate;
+    @Column(name = "shipment_date")
+    private ZonedDateTime shipmentDate;
 
     @NotNull
-    @Column(name = "payment_address")
-    private Long paymentAddress;
+    @Column(name = "shipment_address")
+    private String shipmentAddress;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id", referencedColumnName = "id")
@@ -42,4 +41,8 @@ public class OrderEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private CartEntity cart;
+
+    @ManyToOne
+    @JoinColumn(name = "order_item_id", referencedColumnName = "id")
+    private OrderItemEntity orderItem;
 }

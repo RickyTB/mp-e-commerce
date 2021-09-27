@@ -46,6 +46,4 @@ public class CustomerEntity extends BaseEntity {
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private UserEntity user;
 
-  @OneToOne(mappedBy = "customer", fetch = FetchType.EAGER)
-  private CartEntity cart;
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,16 +15,14 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Entity
-@Table(name = "order_items", schema = "public")
+@Table(name = "order_item", schema = "public")
 public class OrderItemEntity extends BaseEntity {
 
     @NotNull
     @Column(name = "quantity", nullable = false)
-    private Long quantity;
+    private Integer quantity;
 
     @Column(name = "product_id")
-    private Long productId;
+    private Integer productId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private OrderEntity order;
 }
