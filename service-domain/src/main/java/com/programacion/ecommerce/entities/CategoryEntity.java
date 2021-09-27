@@ -2,9 +2,6 @@ package com.programacion.ecommerce.entities;
 
 import lombok.*;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
