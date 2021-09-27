@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
   private CustomerRepository customerRepository;
 
   @Inject
-  @ConfigProperty(name = "app.jwt.iss")
+  @ConfigProperty(name = "mp.jwt.verify.issuer")
   private String jwtIss;
 
   @PostConstruct
@@ -72,6 +72,7 @@ public class AuthServiceImpl implements AuthService {
     CustomerEntity customer = new CustomerEntity(credentials.getAddress(), credentials.getPhone(),
         credentials.getEmail(), Instant.now(), user);
     customerRepository.create(customer);
+    user.setCustomer(customer);
     return user;
   }
 

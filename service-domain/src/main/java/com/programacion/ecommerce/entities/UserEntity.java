@@ -10,6 +10,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.programacion.ecommerce.enums.UserStatus;
 
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @Entity
+@XmlRootElement
 @Table(name = "user", schema = "public")
 @NamedQueries({
     @NamedQuery(name = "UserEntity.findByLogin", query = "SELECT u FROM UserEntity u WHERE u.login = :login"), })

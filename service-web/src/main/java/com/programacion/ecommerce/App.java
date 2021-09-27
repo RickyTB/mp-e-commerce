@@ -11,7 +11,6 @@ import io.helidon.webserver.staticcontent.StaticContentSupport;
 
 public class App {
     public static void main(String[] args) {
-
         WebServer webServer = WebServer
                 .create(Routing.builder().register("/",
                         StaticContentSupport.builder("/dist").welcomeFileName("index.html").build()))
