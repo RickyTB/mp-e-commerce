@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import com.programacion.ecommerce.dao.ProductRepository;
 
@@ -18,12 +19,14 @@ public class ProductServiceImpl implements ProductService {
   private ProductRepository productRepository;
 
   @Override
+  @Transactional
   public List<ProductEntity> getAll() {
     List<ProductEntity> listProduct = productRepository.findAll();
     return listProduct;
   }
 
   @Override
+  @Transactional
   public ProductEntity getOne(Integer id) {
     ProductEntity product = productRepository.find(id);
     return product;

@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.programacion.ecommerce.entities.CategoryEntity;
+import com.programacion.ecommerce.entities.ProductEntity;
 import com.programacion.ecommerce.services.CategoryService;
 
 @ApplicationScoped
@@ -30,11 +31,17 @@ public class CategoryController {
   }
 
   @GET
-
   @Path("/{id}")
   public CategoryEntity getOne(@PathParam("id") Integer id) {
     CategoryEntity category = categoryService.getOne(id);
     return category;
+  }
+
+  @GET
+  @Path("/{id}/products")
+  public List<ProductEntity> listPorducts(@PathParam("id") Integer id) {
+    List<ProductEntity> categories = categoryService.getProducts(id);
+    return categories;
   }
 
 }

@@ -9,4 +9,6 @@ public interface ReviewService {
     ReviewEntity create(ReviewDto reviews);
 
     List<ReviewEntity> getAll();
+
+    // List<ReviewEntity> getMany(Integer id);
 }

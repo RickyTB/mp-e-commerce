@@ -6,10 +6,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +24,9 @@ import javax.validation.constraints.NotNull;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "review", schema = "public")
+// @NamedQueries({
+// @NamedQuery(name = "ReviewEntity.getMany", query = "SELECT r FROM
+// ReviewEntity r WHERE r.productId = :product"), })
 public class ReviewEntity extends BaseEntity {
 
     @NotNull
@@ -30,7 +37,7 @@ public class ReviewEntity extends BaseEntity {
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ProductEntity product;
 

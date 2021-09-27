@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.programacion.ecommerce.dao.BaseRepository;
 import com.programacion.ecommerce.dao.ReviewRepository;
@@ -26,10 +27,12 @@ public class ReviewRepositoryImpl extends BaseRepository<ReviewEntity> implement
     }
 
     /*
-     * @Override public ReviewEntity findByLogin(String login) {
-     * TypedQuery<UserEntity> sql = em.createNamedQuery("UserEntity.findByLogin",
-     * UserEntity.class).setParameter("login", login); return sql.getSingleResult();
-     * }
+     * @Override public List<ReviewEntity> getMany(Integer id) {
+     * TypedQuery<ReviewEntity> sql = em.createNamedQuery("ReviewEntity.getMany",
+     * ReviewEntity.class) .setParameter("productId", id); // List<ReviewEntity>
+     * lstReview = sql.getResultList();
+     * 
+     * return sql.getResultList(); }
      */
 
 }

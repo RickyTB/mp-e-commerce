@@ -2,6 +2,7 @@ package com.programacion.ecommerce.entities;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class CategoryEntity extends BaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<ProductEntity> products;
+    /*
+     * @OneToMany(mappedBy = "category", fetch = FetchType.LAZY) private
+     * List<ProductEntity> products;
+     */
+
 }

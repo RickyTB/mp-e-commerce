@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import com.programacion.ecommerce.entities.ProductEntity;
 import com.programacion.ecommerce.entities.ReviewEntity;
 import com.programacion.ecommerce.services.ProductService;
+import com.programacion.ecommerce.services.ReviewService;
 
 @ApplicationScoped
 @Path("/products")
@@ -23,6 +24,8 @@ public class ProductController {
 
   @Inject
   private ProductService productService;
+
+  private ReviewService reviewService;
 
   @GET
   public List<ProductEntity> getAll() {
@@ -41,6 +44,7 @@ public class ProductController {
   @Path("/{id}/reviews")
   public List<ReviewEntity> getReviews(@PathParam("id") Integer id) {
     ProductEntity product = productService.getOne(id);
+    // List<ReviewEntity> listReviews = reviewService.getMany(product.getId());
     return product.getReviews();
 
   }

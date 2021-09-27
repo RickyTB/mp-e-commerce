@@ -32,7 +32,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     }
 
+    /*
+     * @Override
+     * 
+     * @Transactional public List<ReviewEntity> getMany(Integer id) {
+     * List<ReviewEntity> listReviews = reviewRepository.getMany(id); return
+     * listReviews; }
+     */
+
     @Override
+    @Transactional
     public List<ReviewEntity> getAll() {
         List<ReviewEntity> listReviews = reviewRepository.findAll();
         return listReviews;

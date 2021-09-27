@@ -3,6 +3,7 @@ package com.programacion.ecommerce.services;
 import java.util.List;
 
 import com.programacion.ecommerce.entities.CategoryEntity;
+import com.programacion.ecommerce.entities.ProductEntity;
 
 public interface CategoryService {
 
@@ -10,4 +11,5 @@ public interface CategoryService {
 
   CategoryEntity getOne(Integer id);
 
+  List<ProductEntity> getProducts(Integer id);
 }

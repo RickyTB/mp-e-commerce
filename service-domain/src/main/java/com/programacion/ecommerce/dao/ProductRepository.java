@@ -1,6 +1,8 @@
 package com.programacion.ecommerce.dao;
 
+import com.programacion.ecommerce.entities.CategoryEntity;
 import com.programacion.ecommerce.entities.ProductEntity;
+
 import java.util.List;
 
 public interface ProductRepository {
@@ -17,5 +19,7 @@ public interface ProductRepository {
     List<ProductEntity> findRange(int[] range);
 
     int count();
+
+    List<ProductEntity> findCategory(CategoryEntity id);
 
 }

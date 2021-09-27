@@ -18,4 +18,6 @@ public interface ReviewRepository {
   List<ReviewEntity> findRange(int[] range);
 
   int count();
+
+  // List<ReviewEntity> getMany(Integer id);
 }

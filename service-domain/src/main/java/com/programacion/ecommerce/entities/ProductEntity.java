@@ -18,7 +18,9 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "product", schema = "public")
-public class ProductEntity extends BaseEntity implements Serializable {
+@NamedQueries({
+        @NamedQuery(name = "ProductEntity.findCategories", query = "SELECT p FROM ProductEntity p WHERE p.category = :category"), })
+public class ProductEntity extends BaseEntity {
 
     @NotNull
     @Column(name = "name", nullable = false)
@@ -41,7 +43,7 @@ public class ProductEntity extends BaseEntity implements Serializable {
     @Column(name = "sales_counter", nullable = false)
     private Integer salesCounter;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity category;
 
