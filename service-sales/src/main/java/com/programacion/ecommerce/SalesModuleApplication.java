@@ -8,6 +8,6 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/")
 @ApplicationScoped
 @DeclareRoles({ "user" })
-public class ProductModuleApplication extends Application {
+public class SalesModuleApplication extends Application {
 
 }
