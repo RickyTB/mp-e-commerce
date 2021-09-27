@@ -1,5 +1,6 @@
 export interface ICategory {
   id: number;
+  created: Date;
   name: string;
-  imageUrl: string;
+  description: string;
 }

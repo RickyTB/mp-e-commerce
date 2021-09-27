@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 import com.programacion.ecommerce.enums.ProductStatus;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,9 +24,11 @@ public class ProductEntity extends BaseEntity {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
     @NotNull
     @Column(name = "description", nullable = false)
     private String description;
+
     @NotNull
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
@@ -36,9 +37,11 @@ public class ProductEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ProductStatus status;
+
     @NotNull
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
     @NotNull
     @Column(name = "sales_counter", nullable = false)
     private Integer salesCounter;
