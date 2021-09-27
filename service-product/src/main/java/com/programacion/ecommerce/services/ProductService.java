@@ -9,7 +9,4 @@ public interface ProductService {
   List<ProductEntity> getAll();
 
   ProductEntity getOne(Integer id);
-
-  String generateJWT();
-
 }

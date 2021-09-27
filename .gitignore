@@ -11,3 +11,4 @@ bin
 # Ignore VSCode config directory
 .vscode
 .settings
+ObjectStore/

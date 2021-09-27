@@ -29,10 +29,4 @@ public class ProductServiceImpl implements ProductService {
     return product;
   }
 
-  @Override
-  public String generateJWT() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }

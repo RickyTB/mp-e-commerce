@@ -10,6 +10,4 @@ public interface CategoryService {
 
   CategoryEntity getOne(Integer id);
 
-  String generateJWT();
-
 }

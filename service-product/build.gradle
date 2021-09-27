@@ -30,9 +30,9 @@ dependencies {
     implementation project(":ecommerce-domain")
 }
 
-group = 'com.hkg.helidon'
+group = 'com.programacion.ecommerce'
 version = '1.0-SNAPSHOT'
-description = 'myproject'
+description = 'Proyecto grupal Programación Distribuida'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -43,7 +43,7 @@ tasks.withType(JavaCompile) {
 
 application {
     // Define the main class for the application.
-    mainClass = 'io.helidon.microprofile.server.Main'
+    mainClass = 'io.helidon.microprofile.cdi.Main'
 }
 
 sourceSets {

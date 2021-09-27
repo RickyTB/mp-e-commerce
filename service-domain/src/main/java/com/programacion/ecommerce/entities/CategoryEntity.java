@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
@@ -18,6 +19,7 @@ public class CategoryEntity extends BaseEntity {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
     @NotNull
     @Column(name = "description", nullable = false)
     private String description;

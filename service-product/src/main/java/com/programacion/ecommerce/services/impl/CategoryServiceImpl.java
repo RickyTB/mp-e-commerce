@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import com.programacion.ecommerce.dao.CategoryRepository;
 import com.programacion.ecommerce.entities.CategoryEntity;
@@ -26,12 +25,6 @@ public class CategoryServiceImpl implements CategoryService {
   public CategoryEntity getOne(Integer id) {
     CategoryEntity category = categoryRepository.find(id);
     return category;
-  }
-
-  @Override
-  public String generateJWT() {
-    // TODO Auto-generated method stub
-    return null;
   }
 
 }
