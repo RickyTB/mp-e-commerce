@@ -9,7 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.programacion.ecommerce.dto.LoginCredentialsDto;
+import com.programacion.ecommerce.dto.SessionResultDto;
 import com.programacion.ecommerce.dto.SignupCredentialsDto;
+import com.programacion.ecommerce.dto.UserDto;
 import com.programacion.ecommerce.entities.UserEntity;
 import com.programacion.ecommerce.services.AuthService;
 
@@ -24,16 +26,20 @@ public class AuthController {
 
   @POST
   @Path("/signup")
-  public String signup(SignupCredentialsDto credentials) {
+  public SessionResultDto signup(SignupCredentialsDto credentials) {
     UserEntity user = authService.signup(credentials);
-    return authService.generateJWT(user);
+    String accessToken = authService.generateJWT(user);
+    UserDto userDto = new UserDto(user.getId(), user.getLogin(), user.getCustomer().getId());
+    return new SessionResultDto(accessToken, userDto);
   }
 
   @POST
   @Path("/login")
-  public String login(LoginCredentialsDto credentials) {
+  public SessionResultDto login(LoginCredentialsDto credentials) {
     UserEntity user = authService.login(credentials);
-    return authService.generateJWT(user);
+    String accessToken = authService.generateJWT(user);
+    UserDto userDto = new UserDto(user.getId(), user.getLogin(), user.getCustomer().getId());
+    return new SessionResultDto(accessToken, userDto);
   }
 
 }

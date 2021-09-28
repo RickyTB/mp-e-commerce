@@ -44,7 +44,7 @@ tasks.withType(JavaCompile) {
 
 application {
     // Define the main class for the application.
-    mainClass = 'io.helidon.microprofile.server.Main'
+    mainClass = 'io.helidon.microprofile.cdi.Main'
 }
 
 sourceSets {

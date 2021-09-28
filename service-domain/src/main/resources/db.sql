@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS product
 (
     id serial NOT NULL,
     created timestamp without time zone NOT NULL,
-    name character varying(100)  NOT NULL,
-    description character varying(255) NOT NULL,
+    name character varying(255)  NOT NULL,
+    description text NOT NULL,
     status character varying(255)  NOT NULL,
     price numeric NOT NULL,
     quantity integer NOT NULL,
