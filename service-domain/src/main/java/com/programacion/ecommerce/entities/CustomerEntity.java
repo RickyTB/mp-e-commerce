@@ -5,6 +5,7 @@ import java.time.Instant;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -46,4 +47,8 @@ public class CustomerEntity extends BaseEntity {
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private UserEntity user;
+
+  @OneToOne(mappedBy = "customer", fetch = FetchType.EAGER)
+  private CartEntity cart;
+
 }

@@ -1,4 +1,5 @@
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import {
   Button,
   Card,
@@ -9,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ProductStatus } from "enums";
+import { useCart } from "hooks";
 import { IProduct } from "models";
 import Link from "next/link";
 import React from "react";
@@ -18,6 +20,12 @@ export interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { addProduct, cart, removeProduct } = useCart();
+
+  const handleAddCart = () => addProduct(product);
+
+  const handleRemoveCart = () => removeProduct(product);
+
   return (
     <Card>
       <Link href={{ pathname: "/product", query: { id: product.id } }} passHref>
@@ -44,9 +52,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </Link>
       {product.status === ProductStatus.IN_STOCK && (
         <CardActions>
-          <Button color="success" startIcon={<AddShoppingCartIcon />}>
-            Agregar al carrito
-          </Button>
+          {cart[product.id] ? (
+            <Button
+              color="error"
+              startIcon={<RemoveShoppingCartIcon />}
+              onClick={handleRemoveCart}
+            >
+              Quitar del carrito
+            </Button>
+          ) : (
+            <Button
+              color="success"
+              startIcon={<AddShoppingCartIcon />}
+              onClick={handleAddCart}
+            >
+              Agregar al carrito
+            </Button>
+          )}
         </CardActions>
       )}
     </Card>

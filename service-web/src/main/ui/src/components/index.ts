@@ -4,3 +4,4 @@ export * from "./ProductCard";
 export * from "./ReviewList";
 export * from "./ReviewForm";
 export * from "./ReviewCard";
+export * from "./Cart";

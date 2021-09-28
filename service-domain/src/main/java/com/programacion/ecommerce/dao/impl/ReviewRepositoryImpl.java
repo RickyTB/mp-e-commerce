@@ -1,11 +1,8 @@
 package com.programacion.ecommerce.dao.impl;
 
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import com.programacion.ecommerce.dao.BaseRepository;
 import com.programacion.ecommerce.dao.ReviewRepository;

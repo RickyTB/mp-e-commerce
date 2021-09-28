@@ -50,7 +50,7 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity category;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<ReviewEntity> reviews;
 
 }
