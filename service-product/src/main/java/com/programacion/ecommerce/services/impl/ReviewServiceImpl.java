@@ -24,12 +24,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public ReviewEntity create(ReviewDto rev) {
-        ProductEntity product = productRepository.find(rev.getProductId());
+    public ReviewEntity create(Integer productId, ReviewDto rev) {
+        ProductEntity product = productRepository.find(productId);
         ReviewEntity review = new ReviewEntity(rev.getText(), rev.getRating(), product);
         reviewRepository.create(review);
         return review;
-
     }
 
     /*

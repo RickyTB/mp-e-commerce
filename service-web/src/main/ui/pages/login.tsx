@@ -3,13 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import {
-  Link,
-  InputAdornment,
-  Alert,
-  AlertTitle,
-  CircularProgress,
-} from "@mui/material";
+import { Link, Alert, AlertTitle, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -151,7 +145,7 @@ export default function SignInSide() {
               {state === ResponseState.Error && (
                 <Alert severity="error" sx={{ mt: 3 }}>
                   <AlertTitle>Error</AlertTitle>
-                  Ocurrió un error al crear tu cuenta: {error?.message}
+                  Ocurrió un error al iniciar sesión: {error?.message}
                 </Alert>
               )}
               {state === ResponseState.Loading ? (

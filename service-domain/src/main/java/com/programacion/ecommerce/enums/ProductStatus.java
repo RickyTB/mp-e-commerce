@@ -1,5 +1,5 @@
 package com.programacion.ecommerce.enums;
 
 public enum ProductStatus {
-    AVAILABLE, DISCONTINUED;
+    IN_STOCK, SOLD_OUT;
 }

@@ -54,14 +54,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            E-commerce
-          </Typography>
+          <Link href="/" passHref>
+            <Button color="inherit" size="large">
+              E-commerce
+            </Button>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: "flex" }}>
             {user ? (

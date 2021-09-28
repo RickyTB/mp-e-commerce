@@ -6,9 +6,7 @@ import com.programacion.ecommerce.dto.ReviewDto;
 import com.programacion.ecommerce.entities.ReviewEntity;
 
 public interface ReviewService {
-    ReviewEntity create(ReviewDto reviews);
+    ReviewEntity create(Integer productId, ReviewDto reviews);
 
     List<ReviewEntity> getAll();
-
-    // List<ReviewEntity> getMany(Integer id);
 }

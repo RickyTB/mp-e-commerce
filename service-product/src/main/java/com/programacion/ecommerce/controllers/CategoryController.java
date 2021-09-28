@@ -2,6 +2,7 @@ package com.programacion.ecommerce.controllers;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import com.programacion.ecommerce.services.CategoryService;
 
 @ApplicationScoped
 @Path("/categories")
+@PermitAll
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CategoryController {

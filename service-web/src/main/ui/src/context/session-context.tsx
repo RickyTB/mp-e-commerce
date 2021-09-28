@@ -1,6 +1,14 @@
+import { axios } from "lib/axios";
 import { ILoginResult, IUser } from "models";
 import React, { useCallback, useMemo, useState } from "react";
 
+function setAxiosHeader(sessionToken?: string) {
+  if (sessionToken) {
+    axios.defaults.headers["Authorization"] = "Bearer " + sessionToken;
+  } else {
+    delete axios.defaults.headers["Authorization"];
+  }
+}
 export type SessionValue = {
   accessToken?: string;
   user?: IUser;
@@ -23,7 +31,9 @@ export const SessionProvider: React.FC = ({ children }) => {
 
     const storageValue = localStorage.getItem(STORAGE_KEY);
     if (storageValue) {
-      return JSON.parse(storageValue);
+      const session = JSON.parse(storageValue);
+      setAxiosHeader(session?.accessToken);
+      return session;
     }
     return null;
   });
@@ -35,6 +45,7 @@ export const SessionProvider: React.FC = ({ children }) => {
       } else {
         localStorage.removeItem(STORAGE_KEY);
       }
+      setAxiosHeader(session?.accessToken);
       setSession(session);
     },
     [setSession]
