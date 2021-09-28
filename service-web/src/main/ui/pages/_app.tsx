@@ -7,7 +7,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import { Layout } from "../src/components";
 import theme from "../src/theme";
-import { SessionProvider } from "context";
+import { CartProvider, SessionProvider } from "context";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -40,13 +40,15 @@ function MyApp({
         />
       </Head>
       <SessionProvider>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
+        <CartProvider>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </CartProvider>
       </SessionProvider>
     </CacheProvider>
   );

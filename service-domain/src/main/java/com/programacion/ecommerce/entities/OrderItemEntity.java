@@ -2,15 +2,15 @@ package com.programacion.ecommerce.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)

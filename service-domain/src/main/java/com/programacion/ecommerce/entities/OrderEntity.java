@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
@@ -54,6 +55,5 @@ public class OrderEntity extends BaseEntity {
         this.shipmentAddress = shepmentAdrress;
         this.payment = payment;
         this.cart = cart;
-
     }
 }

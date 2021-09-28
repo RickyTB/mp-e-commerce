@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class InsertOrderItemDto {
-    private Integer quality;
+    private Integer quantity;
     private Integer productId;
 }

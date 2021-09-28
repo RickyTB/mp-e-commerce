@@ -3,10 +3,7 @@ package com.programacion.ecommerce.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,10 +12,12 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
@@ -26,13 +25,14 @@ import lombok.ToString;
 @Table(name = "cart", schema = "public")
 public class CartEntity extends BaseEntity {
 
-    @Column(name = "customer_id")
-    private Integer customer;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private CustomerEntity customer;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private List<OrderEntity> orders;
 
-    public CartEntity(Integer customer) {
+    public CartEntity(CustomerEntity customer) {
         this.customer = customer;
     }
 

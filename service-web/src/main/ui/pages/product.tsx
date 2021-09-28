@@ -10,18 +10,24 @@ import {
 } from "@mui/material";
 import Head from "next/head";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import React, { useEffect } from "react";
 import { IProduct } from "models";
-import { useRequest } from "hooks";
+import { useCart, useRequest } from "hooks";
 import { useRouter } from "next/router";
-import { ProductStatus } from "enums";
 import { ReviewList } from "components";
+import { ProductStatus } from "enums";
 
 export interface ProductPageProps {}
 
 const ProductPage: React.FC<ProductPageProps> = () => {
   const { get, state, data: product, error } = useRequest<IProduct>();
   const { query } = useRouter();
+  const { addProduct, cart, removeProduct } = useCart();
+
+  const handleAddCart = () => addProduct(product!);
+
+  const handleRemoveCart = () => removeProduct(product!);
 
   useEffect(() => {
     if (!query.id) return;
@@ -84,9 +90,23 @@ const ProductPage: React.FC<ProductPageProps> = () => {
             </CardContent>
             {product.status === ProductStatus.IN_STOCK && (
               <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <Button color="success" startIcon={<AddShoppingCartIcon />}>
-                  Agregar al carrito
-                </Button>
+                {cart[product.id] ? (
+                  <Button
+                    color="error"
+                    startIcon={<RemoveShoppingCartIcon />}
+                    onClick={handleRemoveCart}
+                  >
+                    Quitar del carrito
+                  </Button>
+                ) : (
+                  <Button
+                    color="success"
+                    startIcon={<AddShoppingCartIcon />}
+                    onClick={handleAddCart}
+                  >
+                    Agregar al carrito
+                  </Button>
+                )}
               </Box>
             )}
           </Box>

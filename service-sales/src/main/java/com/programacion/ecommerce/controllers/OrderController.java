@@ -25,12 +25,17 @@ import org.eclipse.microprofile.jwt.ClaimValue;
 
 @RequestScoped
 @Path("/")
+@RolesAllowed("user")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrderController {
 
   @Inject
   private OrderService orderService;
+
+  @Inject
+  @Claim("upn")
+  private ClaimValue<JsonString> jwtUpn;
 
   @GET
   @Path("/orders")
@@ -49,16 +54,12 @@ public class OrderController {
   @POST
   @Path("/orders")
   public String createOrder(InsertOrderDto order) {
-    return orderService.createOrder(order);
+    String customerId = jwtUpn.getValue().getString();
+    return orderService.createOrder(order, Integer.parseInt(customerId));
   }
-
-  @Inject
-  @Claim("upn")
-  private ClaimValue<JsonString> jwtUpn;
 
   @POST
   @Path("/carts")
-  @RolesAllowed("user")
   public CartEntity createCart() {
     System.out.println(jwtUpn.getValue());
     /*

@@ -1,43 +1,19 @@
-import {
-  AppBar,
-  Divider,
-  Drawer,
-  IconButton,
-  Typography,
-  Toolbar,
-  List,
-  styled,
-  useTheme,
-  Button,
-} from "@mui/material";
+import { AppBar, Toolbar, Button, Badge } from "@mui/material";
 import { Box } from "@mui/system";
-import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
-import { useSession } from "hooks";
+import { useCart, useSession } from "hooks";
 import Link from "next/link";
-
-import { mainListItems } from "./listitems";
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
+import { Cart } from "components/Cart";
 
 export interface LayoutProps {
   children: any;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const theme = useTheme();
   const { user, setSession } = useSession();
+  const { cart } = useCart();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -66,7 +42,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Button
                   size="large"
                   color="inherit"
-                  startIcon={<ShoppingCartIcon />}
+                  startIcon={
+                    <Badge
+                      badgeContent={Object.keys(cart).length}
+                      color="error"
+                    >
+                      <ShoppingCartIcon />
+                    </Badge>
+                  }
                   aria-label="open drawer"
                   onClick={handleDrawerOpen}
                   sx={{ mr: 2 }}
@@ -99,25 +82,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="right"
-        variant="temporary"
-        open={open}
-        onClose={handleDrawerClose}
-        PaperProps={{ sx: { width: "380px" } }}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>{mainListItems}</List>
-      </Drawer>
+      <Cart open={open} onClose={handleDrawerClose} />
       <main>{children}</main>
     </Box>
   );

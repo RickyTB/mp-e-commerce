@@ -13,6 +13,8 @@
         <class>com.programacion.ecommerce.entities.ProductEntity</class>
         <class>com.programacion.ecommerce.entities.CategoryEntity</class>
         <class>com.programacion.ecommerce.entities.ReviewEntity</class>
+        <class>com.programacion.ecommerce.entities.CustomerEntity</class>
+        <class>com.programacion.ecommerce.entities.UserEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

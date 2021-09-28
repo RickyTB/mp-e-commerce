@@ -14,6 +14,10 @@ module.exports = (phase, { defaultConfig }) => {
             source: "/product/:path*",
             destination: "http://localhost:8002/:path*", // Proxy to Backend
           },
+          {
+            source: "/sales/:path*",
+            destination: "http://localhost:8003/:path*", // Proxy to Backend
+          },
         ];
       },
       /* development only config options here */

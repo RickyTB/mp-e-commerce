@@ -70,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
     UserEntity user = new UserEntity(credentials.getLogin(), password, UserStatus.ACTIVE);
     userRepository.create(user);
     CustomerEntity customer = new CustomerEntity(credentials.getAddress(), credentials.getPhone(),
-        credentials.getEmail(), Instant.now(), user);
+        credentials.getEmail(), Instant.now(), user, null);
     customerRepository.create(customer);
     user.setCustomer(customer);
     return user;
