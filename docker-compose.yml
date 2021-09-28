@@ -61,6 +61,15 @@ services:
     depends_on:
       - postgres
 
+  service-web:
+    build:
+      context: .
+      dockerfile: ./service-web/Dockerfile
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
 networks:
   postgres:
     driver: bridge
