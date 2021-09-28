@@ -51,3 +51,27 @@ sourceSets {
   	    output.resourcesDir=file("${buildDir}/classes/java/main")
     }
 }
+
+// define a custom task to copy all dependencies in the runtime classpath
+// into build/libs/libs
+// uses built-in Copy
+task copyLibs(type: Copy) {
+  from configurations.runtimeClasspath
+  into 'build/libs/libs'
+}
+
+// add it as a dependency of built-in task 'assemble'
+copyLibs.dependsOn jar
+assemble.dependsOn copyLibs
+
+// default jar configuration
+// set the main classpath
+// add each jar under build/libs/libs into the classpath
+jar {
+  archiveFileName = "${project.name}.jar"
+  manifest {
+    attributes ('Main-Class': 'io.helidon.microprofile.cdi.Main',
+                'Class-Path': configurations.runtimeClasspath.files.collect { "libs/$it.name" }.join(' ')
+               )
+  }
+}
