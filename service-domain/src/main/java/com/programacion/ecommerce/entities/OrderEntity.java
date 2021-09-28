@@ -9,9 +9,7 @@ import com.programacion.ecommerce.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -45,7 +43,7 @@ public class OrderEntity extends BaseEntity {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private CartEntity cart;
 
-    @EqualsAndHashCode.Exclude
+    // @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<OrderItemEntity> orderItems;
 

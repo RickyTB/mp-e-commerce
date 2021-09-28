@@ -16,7 +16,7 @@ public interface OrderService {
 
     List<OrderEntity> getAll();
 
-    OrderEntity createOrder(InsertOrderDto order);
+    String createOrder(InsertOrderDto order);
 
     CartEntity createCart(InsertCartDto cutomer);
 

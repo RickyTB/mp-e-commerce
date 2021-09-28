@@ -30,7 +30,6 @@ public class ProductRepositoryImpl extends BaseRepository<ProductEntity> impleme
     public List<ProductEntity> findCategory(CategoryEntity id) {
         Query sql = em.createNamedQuery("ProductEntity.findCategories").setParameter("category", id);
         // List<ProductEntity> res = sql.getResultList();
-
         return sql.getResultList();
     }
 

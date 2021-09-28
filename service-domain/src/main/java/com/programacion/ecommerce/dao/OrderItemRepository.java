@@ -1,5 +1,6 @@
 package com.programacion.ecommerce.dao;
 
+import com.programacion.ecommerce.entities.OrderEntity;
 import com.programacion.ecommerce.entities.OrderItemEntity;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface OrderItemRepository {
     List<OrderItemEntity> findRange(int[] range);
 
     int count();
+
+    List<OrderItemEntity> findOrder(OrderEntity id);
 
 }

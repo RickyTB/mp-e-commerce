@@ -10,6 +10,9 @@
         <class>com.programacion.ecommerce.entities.OrderItemEntity</class>
         <class>com.programacion.ecommerce.entities.OrderEntity</class>
         <class>com.programacion.ecommerce.entities.PaymentEntity</class>
+        <class>com.programacion.ecommerce.entities.ProductEntity</class>
+        <class>com.programacion.ecommerce.entities.CategoryEntity</class>
+        <class>com.programacion.ecommerce.entities.ReviewEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

@@ -2,8 +2,10 @@ package com.programacion.ecommerce.controllers;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonString;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,14 +14,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.programacion.ecommerce.dto.InsertCartDto;
 import com.programacion.ecommerce.dto.InsertOrderDto;
 import com.programacion.ecommerce.entities.CartEntity;
 import com.programacion.ecommerce.entities.OrderEntity;
 import com.programacion.ecommerce.entities.OrderItemEntity;
 import com.programacion.ecommerce.services.OrderService;
 
-@ApplicationScoped
+import org.eclipse.microprofile.jwt.Claim;
+import org.eclipse.microprofile.jwt.ClaimValue;
+
+@RequestScoped
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -44,14 +48,25 @@ public class OrderController {
 
   @POST
   @Path("/orders")
-  public OrderEntity createOrder(InsertOrderDto order) {
+  public String createOrder(InsertOrderDto order) {
     return orderService.createOrder(order);
   }
 
+  @Inject
+  @Claim("upn")
+  private ClaimValue<JsonString> jwtUpn;
+
   @POST
   @Path("/carts")
-  public CartEntity createCart(InsertCartDto cart) {
-    return orderService.createCart(cart);
+  @RolesAllowed("user")
+  public CartEntity createCart() {
+    System.out.println(jwtUpn.getValue());
+    /*
+     * InsertCartDto in = new InsertCartDto();
+     * System.out.println(jwtUpn.getValue().hashCode()); return
+     * orderService.createCart(in);
+     */
+    return null;
   }
 
 }

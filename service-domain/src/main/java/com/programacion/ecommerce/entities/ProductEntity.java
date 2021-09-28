@@ -30,7 +30,7 @@ public class ProductEntity extends BaseEntity {
     private String description;
     @NotNull
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
-    private Double price;
+    private Integer price;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -47,7 +47,7 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity category;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<ReviewEntity> reviews;
 
 }

@@ -16,6 +16,9 @@ import javax.validation.constraints.NotNull;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "order_item", schema = "public")
+@NamedQueries({
+        @NamedQuery(name = "OrderItemEntity.findOrder", query = "SELECT p FROM OrderItemEntity p WHERE p.order = :order"), })
+
 public class OrderItemEntity extends BaseEntity {
 
     @NotNull
