@@ -70,6 +70,15 @@ services:
     depends_on:
       - postgres
 
+  service-sales:
+    build:
+      context: .
+      dockerfile: ./service-sales/Dockerfile
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
 networks:
   postgres:
     driver: bridge

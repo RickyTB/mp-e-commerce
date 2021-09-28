@@ -73,7 +73,11 @@ export const Cart: React.FC<CartProps> = ({ open, onClose }) => {
           Carrito de compras
         </Typography>
         {cartList.map((cartItem) => (
-          <CartItem product={cartItem.product} quantity={cartItem.quantity} />
+          <CartItem
+            key={cartItem.product.id}
+            product={cartItem.product}
+            quantity={cartItem.quantity}
+          />
         ))}
         {cartList.length === 0 && (
           <Typography mb={2}>
