@@ -8,8 +8,6 @@ group = 'com.programacion.ecommerce'
 version = '1.0-SNAPSHOT'
 description = 'Proyecto grupal Programación Distribuida'
 
-description = "MicroProfile Starter example"
-
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
