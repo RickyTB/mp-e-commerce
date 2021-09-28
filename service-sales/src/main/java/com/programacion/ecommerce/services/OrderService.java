@@ -3,6 +3,7 @@ package com.programacion.ecommerce.services;
 import java.util.List;
 import java.util.Set;
 
+import com.programacion.ecommerce.dto.InsertCartDto;
 import com.programacion.ecommerce.dto.InsertOrderDto;
 import com.programacion.ecommerce.dto.InsertOrderItemDto;
 import com.programacion.ecommerce.entities.CartEntity;
@@ -17,6 +18,6 @@ public interface OrderService {
 
     OrderEntity createOrder(InsertOrderDto order);
 
-    CartEntity createCart(Integer id);
+    CartEntity createCart(InsertCartDto cutomer);
 
 }

@@ -23,7 +23,7 @@ public class OrderEntity extends BaseEntity {
 
     @NotNull
     @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
-    private Double price;
+    private BigDecimal price;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -49,7 +49,7 @@ public class OrderEntity extends BaseEntity {
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<OrderItemEntity> orderItems;
 
-    public OrderEntity(Double price, OrderStatus status, String shepmentAdrress, PaymentEntity payment,
+    public OrderEntity(BigDecimal price, OrderStatus status, String shepmentAdrress, PaymentEntity payment,
             CartEntity cart) {
         this.price = price;
         this.status = status;

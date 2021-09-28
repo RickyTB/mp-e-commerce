@@ -10,9 +10,12 @@ import com.programacion.ecommerce.dao.OrderItemRepository;
 import com.programacion.ecommerce.dao.OrderRepository;
 import com.programacion.ecommerce.dao.PaymentRepository;
 import com.programacion.ecommerce.dao.ProductRepository;
+import com.programacion.ecommerce.dto.InsertCartDto;
 import com.programacion.ecommerce.dto.InsertOrderDto;
 import com.programacion.ecommerce.dto.InsertOrderItemDto;
 import com.programacion.ecommerce.entities.CartEntity;
+
+import javax.transaction.Transactional;
 
 import com.programacion.ecommerce.entities.OrderEntity;
 import com.programacion.ecommerce.entities.OrderItemEntity;
@@ -54,6 +57,7 @@ public class OrderServiceImpl implements OrderService {
 
     // metodo para crear crear la orden
     @Override
+    @Transactional
     public OrderEntity createOrder(InsertOrderDto order) {
         PaymentEntity paypal = paymentRepository.find(order.getPaypal());
         CartEntity cart = cartRepository.find(order.getCart());
@@ -70,8 +74,9 @@ public class OrderServiceImpl implements OrderService {
 
     // metodo para crear el carrito
     @Override
-    public CartEntity createCart(Integer id) {
-        CartEntity cart = new CartEntity(id);
+    @Transactional
+    public CartEntity createCart(InsertCartDto cutomer) {
+        CartEntity cart = new CartEntity(cutomer.getCustomer());
         cartRepository.create(cart);
         return cart;
     }

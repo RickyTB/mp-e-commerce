@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.programacion.ecommerce.dto.InsertCartDto;
 import com.programacion.ecommerce.dto.InsertOrderDto;
 import com.programacion.ecommerce.entities.CartEntity;
 import com.programacion.ecommerce.entities.OrderEntity;
@@ -48,9 +49,9 @@ public class OrderController {
   }
 
   @POST
-  @Path("/cart")
-  public CartEntity createCart(Integer id) {
-    return orderService.createCart(id);
+  @Path("/carts")
+  public CartEntity createCart(InsertCartDto cart) {
+    return orderService.createCart(cart);
   }
 
 }
