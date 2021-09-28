@@ -1,6 +1,18 @@
 version: "3.5"
 
 services:
+  # The load balancer
+  nginx:
+    image: nginx:1.16.0-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres
     environment:
@@ -8,7 +20,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - postgres_ecommerce:/data/postgres
+      - ./1-schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./2-data.sql:/docker-entrypoint-initdb.d/2-data.sql
     ports:
       - "5432:5432"
     networks:
@@ -23,17 +37,43 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
       - pgadmin:/var/lib/pgadmin
-
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
       - postgres
     restart: unless-stopped
 
+  service-auth:
+    build:
+      context: .
+      dockerfile: ./service-auth/Dockerfile
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
+  service-product:
+    build:
+      context: .
+      dockerfile: ./service-product/Dockerfile
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
+  service-web:
+    build:
+      context: .
+      dockerfile: ./service-web/Dockerfile
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
 networks:
   postgres:
     driver: bridge
 
 volumes:
-  postgres:
+  postgres_ecommerce:
   pgadmin:
