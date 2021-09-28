@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - postgres_ecommerce:/data/postgres
       - ./1-schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
       - ./2-data.sql:/docker-entrypoint-initdb.d/2-data.sql
     ports:
@@ -75,5 +75,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres:
+  postgres_ecommerce:
   pgadmin:
