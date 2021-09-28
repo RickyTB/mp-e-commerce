@@ -25,4 +25,7 @@ public class OrderItemEntity extends BaseEntity {
     @Column(name = "product_id")
     private Integer productId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OrderEntity order;
+
 }

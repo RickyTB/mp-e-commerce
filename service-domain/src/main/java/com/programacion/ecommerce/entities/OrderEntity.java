@@ -8,7 +8,10 @@ import javax.validation.constraints.NotNull;
 import com.programacion.ecommerce.enums.OrderStatus;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +23,7 @@ public class OrderEntity extends BaseEntity {
 
     @NotNull
     @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
-    private BigDecimal price;
+    private Double price;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -28,7 +31,7 @@ public class OrderEntity extends BaseEntity {
     private OrderStatus status;
     @NotNull
     @Column(name = "shipment_date")
-    private ZonedDateTime shipmentDate;
+    private Instant shipmentDate = Instant.now();
 
     @NotNull
     @Column(name = "shipment_address")
@@ -42,7 +45,17 @@ public class OrderEntity extends BaseEntity {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private CartEntity cart;
 
-    @ManyToOne
-    @JoinColumn(name = "order_item_id", referencedColumnName = "id")
-    private OrderItemEntity orderItem;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<OrderItemEntity> orderItems;
+
+    public OrderEntity(Double price, OrderStatus status, String shepmentAdrress, PaymentEntity payment,
+            CartEntity cart) {
+        this.price = price;
+        this.status = status;
+        this.shipmentAddress = shepmentAdrress;
+        this.payment = payment;
+        this.cart = cart;
+
+    }
 }

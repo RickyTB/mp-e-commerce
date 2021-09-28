@@ -32,4 +32,8 @@ public class CartEntity extends BaseEntity {
     @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
     private List<OrderEntity> orders;
 
+    public CartEntity(Integer customer) {
+        this.customer = customer;
+    }
+
 }

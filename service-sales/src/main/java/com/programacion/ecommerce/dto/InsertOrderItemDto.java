@@ -1,0 +1,9 @@
+package com.programacion.ecommerce.dto;
+
+import lombok.Data;
+
+@Data
+public class InsertOrderItemDto {
+    private Integer quality;
+    private Integer productId;
+}

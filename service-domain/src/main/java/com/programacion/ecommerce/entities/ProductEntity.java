@@ -30,7 +30,7 @@ public class ProductEntity extends BaseEntity {
     private String description;
     @NotNull
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
-    private BigDecimal price;
+    private Double price;
 
     @NotNull
     @Enumerated(EnumType.STRING)
